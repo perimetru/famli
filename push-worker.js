@@ -2,7 +2,7 @@ self.addEventListener('push', event => {
   let type;
   try { type = event.data?.json()?.type; } catch (_) {}
   event.waitUntil(self.registration.showNotification('Famli', {
-    body: type === 'completed' ? 'Задание выполнено. Откройте Famli, чтобы посмотреть.' : 'У вас новое задание. Откройте Famli, чтобы посмотреть его.',
+    body: type === 'completed' ? 'Задание выполнено. Откройте Famli, чтобы посмотреть.' : type === 'reminder' ? 'Пора выполнить задание. Откройте Famli, чтобы посмотреть его.' : 'У вас новое задание. Откройте Famli, чтобы посмотреть его.',
     icon: new URL('../icons/Icon-192.png', self.registration.scope).href,
     tag: 'famli-task',
     data: { url: new URL('../', self.registration.scope).href }
