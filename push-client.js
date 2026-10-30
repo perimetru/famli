@@ -35,3 +35,8 @@ window.famliPush = {
     return endpoint;
   }
 };
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistration(new URL('push/', document.baseURI).href)
+    .then(registration => registration?.update()).catch(() => {});
+}
